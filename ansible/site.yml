@@ -1,0 +1,31 @@
+---
+- name: Deploy Blogging Platform
+  hosts: App
+  become: yes
+
+  tasks:
+
+    - name: Copy Docker Compose file
+      copy:
+        src: files/docker-compose.yml
+        dest: /home/ubuntu/docker-compose.yml
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+
+    - name: Pull latest Docker images
+      command: docker compose pull
+      args:
+        chdir: /home/ubuntu
+
+    - name: Start application
+      command: docker compose up -d
+      args:
+        chdir: /home/ubuntu
+
+    - name: Verify running containers
+      command: docker ps
+      register: output
+
+    - debug:
+        var: output.stdout_lines
