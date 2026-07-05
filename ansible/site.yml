@@ -14,12 +14,12 @@
         mode: '0644'
 
     - name: Pull latest Docker images
-      command: docker compose pull
+      command: docker-compose pull
       args:
         chdir: /home/ubuntu
 
     - name: Start application
-      command: docker compose up -d
+      command: docker-compose up -d
       args:
         chdir: /home/ubuntu
 
@@ -27,5 +27,6 @@
       command: docker ps
       register: output
 
-    - debug:
+    - name: Show running containers
+      debug:
         var: output.stdout_lines
