@@ -1,21 +1,9 @@
 version: "3.8"
 
 services:
-
   frontend:
-    image: YOUR_DOCKERHUB_USERNAME/blog-frontend:latest
+    image: umangkhandelwal/jultnewprt:v1
     container_name: frontend
-
     ports:
       - "80:80"
-
-    restart: always
-
-  backend:
-    image: YOUR_DOCKERHUB_USERNAME/blog-backend:latest
-    container_name: backend
-
-    ports:
-      - "8080:8080"
-
     restart: always
